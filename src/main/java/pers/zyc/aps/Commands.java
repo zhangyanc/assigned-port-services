@@ -14,4 +14,6 @@ public interface Commands {
 	int DAYTIME_ACK = 13;
 
 	int DISCARD = 14;
+
+	int ChARGEN = 15;
 }
