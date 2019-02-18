@@ -27,11 +27,11 @@ public class ChargenServer extends NetServer implements EventListener<ChannelEve
 	public ChargenServer(int length, int delay) {
 		this.length = length;
 		this.delay = delay;
+		setPort(PORT);
 	}
 
 	@Override
 	protected void doStart() {
-		setPort(PORT);
 		addListener(this);
 		super.doStart();
 	}
@@ -46,6 +46,7 @@ public class ChargenServer extends NetServer implements EventListener<ChannelEve
 	public void onEvent(final ChannelEvent event) {
 		switch (event.eventType) {
 			case CONNECT:
+				logger.info("Create chargen task, Channel: {}", event.channel);
 				synchronized (event.channel) {
 					final CharGenerator generator = new CharGenerator(length);
 
@@ -63,6 +64,7 @@ public class ChargenServer extends NetServer implements EventListener<ChannelEve
 				}
 				break;
 			case CLOSE:
+				logger.info("Cancel chargen task, Channel: {}", event.channel);
 				synchronized (event.channel) {
 					Future<?> future = event.channel.attr(FUTURE_KEY).get();
 					if (future != null) {

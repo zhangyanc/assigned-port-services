@@ -1,11 +1,11 @@
 package pers.zyc.aps.daytime.server;
 
-import pers.zyc.tools.network.RegistrableRequestHandlerFactory;
+import pers.zyc.tools.network.DefaultRequestHandlerFactory;
 
 /**
  * @author zhangyancheng
  */
-public class DaytimeRequestHandlerFactory extends RegistrableRequestHandlerFactory {
+class DaytimeRequestHandlerFactory extends DefaultRequestHandlerFactory {
 
 	{
 		register(new DaytimeRequestHandler());

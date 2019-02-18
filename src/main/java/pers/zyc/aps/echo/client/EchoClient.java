@@ -6,7 +6,7 @@ import pers.zyc.aps.echo.EchoCommandFactory;
 import pers.zyc.aps.echo.server.EchoServer;
 import pers.zyc.tools.network.NetClient;
 import pers.zyc.tools.network.Response;
-import pers.zyc.tools.utils.TimeMillis;
+import pers.zyc.tools.utils.SystemMillis;
 
 /**
  * @author zhangyancheng
@@ -20,7 +20,7 @@ public class EchoClient {
 
 		int i = 3;
 		while (i-- > 0) {
-			Echo echo = new Echo(TimeMillis.INSTANCE.get() + " - " + Math.random());
+			Echo echo = new Echo(SystemMillis.current() + " - " + Math.random());
 			echo.setChannel(echoClient.createChannel("localhost", EchoServer.PORT));
 
 			Response response = echoClient.sendSync(echo);

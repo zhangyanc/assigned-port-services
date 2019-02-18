@@ -1,11 +1,11 @@
 package pers.zyc.aps.echo.server;
 
-import pers.zyc.tools.network.RegistrableRequestHandlerFactory;
+import pers.zyc.tools.network.DefaultRequestHandlerFactory;
 
 /**
  * @author zhangyancheng
  */
-public class EchoHandlerFactory extends RegistrableRequestHandlerFactory {
+public class EchoHandlerFactory extends DefaultRequestHandlerFactory {
 	{
 		register(new EchoHandler());
 	}
