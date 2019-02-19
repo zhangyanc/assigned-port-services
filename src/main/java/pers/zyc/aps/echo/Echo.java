@@ -34,14 +34,12 @@ public class Echo extends Request {
 
 	@Override
 	protected void encodeBody(ByteBuf byteBuf) throws Exception {
-		byte[] msgBytes = msg.getBytes(UTF_8);
-		byteBuf.writeInt(msgBytes.length);
-		byteBuf.writeBytes(msgBytes);
+		byteBuf.writeBytes(msg.getBytes(UTF_8));
 	}
 
 	@Override
 	public void decodeBody(ByteBuf byteBuf) throws Exception {
-		byte[] msgBytes = new byte[byteBuf.readInt()];
+		byte[] msgBytes = new byte[byteBuf.readableBytes()];
 		byteBuf.readBytes(msgBytes);
 		this.msg = new String(msgBytes, UTF_8);
 	}
